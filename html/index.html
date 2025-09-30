@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Assistive Crosswalk Navigation – Tutorial</title>
+    <meta name="description" content="A comprehensive 20-minute tutorial on assistive crosswalk navigation for blind/low-vision pedestrians using computer vision and sensors." />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Main Navigation -->
+<header class="header">
+  <div class="container">
+    <nav class="nav">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">AC</div>
+        <span>Assistive Crosswalk Navigation</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="sensors.html" class="nav-link">Sensors</a></li>
+        <li><a href="tasks.html" class="nav-link">Tasks</a></li>
+        <li><a href="algorithms.html" class="nav-link">Algorithms</a></li>
+        <li><a href="activities.html" class="nav-link">Activities</a></li>
+        <li><a href="references.html" class="nav-link">References</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- Hero Section: Introduction with video demonstration -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-text">
+          <h1>Assistive Crosswalk Navigation</h1>
+            <p class="lead">
+              Over 7 million Americans with visual impairments face daily challenges navigating street crossings
+              independently. This tutorial explores how modern smartphone technology—combining
+              computer vision, sensor fusion, and real-time guidance—provides life-changing assistance.
+              Learn the technical foundations through working code examples, interactive quizzes, visual comparisons,
+              and an alignment simulator game.
+            </p>
+        </div>
+           <div class="hero-media">
+              <div class="video-container">
+                <video controls muted>
+                  <source src="../media/intro-video.mp4" type="video/mp4">
+                  <source src="../media/intro-video.webm" type="video/webm">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+              <p style="text-align: center; margin-top: 1rem; font-size: 0.95rem; color: #64748b; font-style: italic; position: relative; z-index: 9999;">
+                Figure 1: Demonstration of real-time crosswalk navigation assistance for visually impaired pedestrians using smartphone-based computer vision <a href="references.html#ref-video1" style="color: #f97316; text-decoration: underline; font-weight: 600; position: relative; z-index: 10000;"><sup>[6]</sup></a>
+              </p>
+         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Audio Narration -->
+  <section class="container">
+    <div class="audio-player">
+      <div class="audio-title">Tutorial Introduction & Navigation Guide</div>
+      <audio controls preload="metadata" class="audio-controls">
+        <source src="../media/narration-intro.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      <div class="audio-note">Learn how to navigate this tutorial and what you'll discover</div>
+    </div>
+  </section>
+
+  <!-- Learning Objectives -->
+  <section class="section" style="background: var(--bg-secondary);">
+    <div class="container">
+      <h2 class="text-center mb-4">What You'll Master in This Tutorial</h2>
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>Technical Foundations</h3>
+          <ul style="font-size: 1.05rem; line-height: 1.7;">
+            <li><strong>Sensor capabilities:</strong> Understanding what cameras, IMUs, GPS, and depth sensors contribute</li>
+            <li><strong>Computer vision techniques:</strong> Classical approaches (Hough Transform) vs modern deep learning</li>
+            <li><strong>Mathematical framework:</strong> How the core equation Δθ = θ_user - θ_crosswalk drives all guidance</li>
+            <li><strong>Performance tradeoffs:</strong> Accuracy vs speed vs power consumption</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Practical Implementation</h3>
+          <ul style="font-size: 1.05rem; line-height: 1.7;">
+            <li><strong>Algorithm selection:</strong> When to use classical CV vs CNN-based detection</li>
+            <li><strong>Real-world challenges:</strong> Handling shadows, occlusion, faded markings, weather</li>
+            <li><strong>System design:</strong> How detection, alignment, signals, and obstacles work together</li>
+            <li><strong>Evaluation metrics:</strong> Measuring accuracy, latency, robustness, and user acceptance</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout" style="margin-top: 2rem;">
+        <div class="callout-title">Tutorial Philosophy</div>
+        <div class="callout-content">
+          <p>This tutorial bridges research and implementation. You'll see the evolution from foundational 2008 mobile systems (Crosswatch) through modern deep learning approaches (2023-2024), understanding <em>why</em> techniques evolved and <em>when</em> to apply each method. Every algorithm includes working pseudocode. Every concept connects to hands-on demonstrations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tutorial Structure Overview -->
+  <section class="section">
+    <div class="container">
+      <h2 class="text-center mb-4">Tutorial Structure</h2>
+      <div class="grid grid-3">
+        <div class="card">
+          <div class="card-title">📱 Sensors & Inputs</div>
+          <p class="card-description">Camera, IMU, GPS capabilities and sensor fusion strategies for robust navigation.</p>
+          <a href="sensors.html" class="card-link">Explore Sensors →</a>
+        </div>
+        <div class="card">
+          <div class="card-title">🎯 Core Tasks</div>
+          <p class="card-description">Detection, alignment, signal recognition, and obstacle awareness challenges.</p>
+          <a href="tasks.html" class="card-link">Study Tasks →</a>
+        </div>
+        <div class="card">
+          <div class="card-title">⚙️ Algorithms</div>
+          <p class="card-description">Classical vs. deep learning approaches with examples and code.</p>
+          <a href="algorithms.html" class="card-link">Learn Algorithms →</a>
+        </div>
+        <div class="card">
+          <div class="card-title">🧩 Interactive Activities</div>
+          <p class="card-description">Hands-on demos, quizzes, audio feedback, and alignment simulation game.</p>
+          <a href="activities.html" class="card-link">Try Activities →</a>
+        </div>
+        <div class="card">
+          <div class="card-title">📚 Research Foundation</div>
+          <p class="card-description">Annotated bibliography with reliability ratings and source analysis.</p>
+          <a href="references.html" class="card-link">Review References →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Computer Vision Demo: Before/After Slider -->
+  <section class="section" id="visual-demo">
+    <div class="container">
+      <h2>Computer Vision Processing Demo</h2>
+      <p class="text-center mb-4">Move the slider to reveal how an AI highlights the crosswalk compared to the raw camera view.</p>
+
+      <div class="card">
+        <div class="slider-wrap" aria-label="Before/after vision slider">
+          <div class="layer" aria-hidden="true">
+            <svg class="inline-svg" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" aria-label="Raw street image">
+              <rect width="400" height="300" fill="#89c2ff" />
+              <rect x="0" y="160" width="400" height="140" fill="#4d4d4d" />
+              <g opacity="0.35" transform="translate(60,190) skewX(-10)">
+                <rect x="0" y="0" width="280" height="12" fill="#fff"/><rect x="0" y="24" width="280" height="12" fill="#fff"/>
+                <rect x="0" y="48" width="280" height="12" fill="#fff"/><rect x="0" y="72" width="280" height="12" fill="#fff"/>
+              </g>
+            </svg>
+          </div>
+
+          <div class="layer overlay" id="overlay">
+            <svg class="inline-svg" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" aria-label="AI processed view with detections">
+              <rect width="400" height="300" fill="#89c2ff" />
+              <rect x="0" y="160" width="400" height="140" fill="#4d4d4d" />
+              <g transform="translate(60,190) skewX(-10)">
+                <rect x="0" y="0" width="280" height="12" fill="#00ffaa"/><rect x="0" y="24" width="280" height="12" fill="#00ffaa"/>
+                <rect x="0" y="48" width="280" height="12" fill="#00ffaa"/><rect x="0" y="72" width="280" height="12" fill="#00ffaa"/>
+              </g>
+              <rect x="56" y="184" width="292" height="106" fill="none" stroke="#00ffaa" stroke-width="3" />
+              <rect x="56" y="168" width="160" height="22" fill="#00ffaa" />
+              <text x="64" y="184" font-family="monospace" font-size="14" fill="#003322">CROSSWALK: 0.92</text>
+            </svg>
+          </div>
+        </div>
+
+        <input class="range" type="range" min="0" max="100" value="50" id="slider" aria-label="Drag to reveal AI processed overlay">
+        <div class="caption">Drag the slider to reveal the AI-processed view (detections + bounding box).</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Activity: Crosswalk Spotter Challenge -->
+  <section class="section" style="background: var(--bg-secondary);">
+    <div class="container">
+      <h2 class="text-center">Crosswalk Spotter Challenge</h2>
+      <p class="text-center mb-4">Practice identifying crosswalks in different scenarios. Can you spot them all?</p>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; max-width: 1200px; margin: 0 auto;" id="crosswalk-spotter">
+        <div class="card">
+          <div class="pill">Scene A</div>
+          <div class="imgbox">
+            <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" aria-label="Street scene with zebra crosswalk">
+              <rect width="400" height="300" fill="#bfe2ff" />
+              <rect x="0" y="140" width="400" height="160" fill="#4b5563" />
+              <g transform="translate(60,180) skewX(-10)">
+                <rect x="0" y="0" width="280" height="12" fill="#f8fafc"/><rect x="0" y="24" width="280" height="12" fill="#f8fafc"/>
+                <rect x="0" y="48" width="280" height="12" fill="#f8fafc"/><rect x="0" y="72" width="280" height="12" fill="#f8fafc"/>
+              </g>
+              <rect x="0" y="130" width="400" height="10" fill="#cbd5e1"/>
+            </svg>
+          </div>
+          <div class="choices">
+            <label class="choice"><input type="radio" name="s1" value="yes"> Crosswalk present</label>
+            <label class="choice"><input type="radio" name="s1" value="no"> No crosswalk</label>
+          </div>
+          <div class="btnrow">
+            <button class="btn ghost" onclick="revealSpotter('s1','ans1','yes')">Reveal</button>
+          </div>
+          <div id="ans1" class="result">Correct answer: <strong>Yes</strong> – look for alternating white stripes.</div>
+        </div>
+
+        <div class="card">
+          <div class="pill">Scene B</div>
+          <div class="imgbox">
+            <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" aria-label="Street scene without crosswalk">
+              <rect width="400" height="300" fill="#cfe9ff" />
+              <rect x="0" y="140" width="400" height="160" fill="#4b5563" />
+              <rect x="0" y="215" width="400" height="5" fill="#fde68a" />
+              <rect x="40" y="215" width="30" height="5" fill="#4b5563" />
+              <rect x="120" y="215" width="30" height="5" fill="#4b5563" />
+              <rect x="200" y="215" width="30" height="5" fill="#4b5563" />
+              <rect x="280" y="215" width="30" height="5" fill="#4b5563" />
+              <rect x="360" y="215" width="30" height="5" fill="#4b5563" />
+              <rect x="0" y="130" width="400" height="10" fill="#cbd5e1"/>
+            </svg>
+          </div>
+          <div class="choices">
+            <label class="choice"><input type="radio" name="s2" value="yes"> Crosswalk present</label>
+            <label class="choice"><input type="radio" name="s2" value="no"> No crosswalk</label>
+          </div>
+          <div class="btnrow">
+            <button class="btn ghost" onclick="revealSpotter('s2','ans2','no')">Reveal</button>
+          </div>
+          <div id="ans2" class="result">Correct answer: <strong>No</strong> – that's a lane divider, not a crosswalk.</div>
+        </div>
+
+        <div class="card">
+          <div class="pill">Scene C</div>
+          <div class="imgbox">
+            <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" aria-label="Street scene with faded crosswalk">
+              <rect width="400" height="300" fill="#bfe2ff" />
+              <rect x="0" y="140" width="400" height="160" fill="#4b5563" />
+              <g opacity=".02" transform="translate(60,180) skewX(-10)">
+                <rect x="0" y="0" width="280" height="12" fill="#f8fafc"/><rect x="0" y="24" width="280" height="12" fill="#f8fafc"/>
+                <rect x="0" y="48" width="280" height="12" fill="#f8fafc"/><rect x="0" y="72" width="280" height="12" fill="#f8fafc"/>
+              </g>
+              <rect x="0" y="130" width="400" height="10" fill="#cbd5e1"/>
+            </svg>
+          </div>
+          <div class="choices">
+            <label class="choice"><input type="radio" name="s3" value="yes"> Crosswalk present</label>
+            <label class="choice"><input type="radio" name="s3" value="no"> No crosswalk</label>
+          </div>
+          <div class="btnrow">
+            <button class="btn ghost" onclick="revealSpotter('s3','ans3','yes')">Reveal</button>
+          </div>
+          <div id="ans3" class="result">Correct answer: <strong>Yes</strong> – faded stripes still count.</div>
+        </div>
+      </div>
+
+      <div class="toolbar" style="display:flex; gap:12px; margin-top: 16px; justify-content: center;">
+        <button class="btn" onclick="tallySpotter()">Tally My Answers</button>
+        <button class="btn ghost" onclick="resetSpotter()">Reset</button>
+      </div>
+      <div id="spotter-score" class="score" style="display:none; margin-top:16px; padding: 12px 14px; border-radius: 14px; background:#ecfeff; border:1px solid #cffafe; font-weight:700; color:#065f46; text-align: center;" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- Problem Statement and Technical Solution -->
+  <section class="section">
+    <div class="container">
+      <h2>The Challenge & Technical Solution</h2>
+      <div class="grid grid-2">
+        <div>
+          <h3>The Problem: Independence at Intersections</h3>
+          <p>While traditional mobility aids (white canes, guide dogs) help with general navigation, they cannot provide:</p>
+          <ul class="checklist">
+            <li>Precise crosswalk location and orientation</li>
+            <li>Real-time heading correction during crossing</li>
+            <li>Traffic signal state recognition</li>
+            <li>Dynamic obstacle detection in the crossing path</li>
+          </ul>
+          <p><strong>The gap:</strong> Existing GPS navigation offers street-level guidance but lacks the centimeter-level precision needed for safe crosswalk alignment. Users need to know not just <em>where</em> the crosswalk is, but <em>how to orient their body</em> to cross safely.</p>
+        </div>
+
+        <div class="grid grid-2">
+          <h3>Our Technical Approach</h3>
+          <p>Modern smartphone-based systems combine five core technologies:</p>
+          <ul class="checklist">
+            <li><strong>Crosswalk Detection:</strong> Camera and computer vision identify crosswalk markings in real-time, calculating orientation even with faded paint or poor lighting</li>
+            <li><strong>User Orientation Estimation:</strong> IMU (gyroscope + accelerometer) continuously tracks the user's heading direction</li>
+            <li><strong>Sensor Fusion and Alignment:</strong> Combines visual crosswalk data with IMU readings to compute heading error (Δθ = θ_user - θ_crosswalk)</li>
+            <li><strong>Obstacle Detection:</strong> Depth estimation detects distance to vehicles, poles, and pedestrians to assess collision risks</li>
+            <li><strong>Navigation Logic:</strong> System decides whether to guide rotation, wait, or proceed based on safety-first principles</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Real-Time Detection Example -->
+  <section class="section" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="media-container" style="max-width: 700px; margin: 0 auto;">
+        <img src="../media/processed-hough.gif"
+             alt="Real-time crosswalk detection showing angle calculations overlaid on video feed"
+             loading="lazy"
+             style="width: 100%; height: auto; border-radius: var(--radius-lg);">
+        <p style="text-align: center; margin-top: 1rem; font-size: 0.95rem; color: #64748b; font-style: italic;">
+          Figure 2: Real-time crosswalk detection with angle measurements. Green lines indicate detected stripe edges, red centerline shows optimal crossing trajectory with angular deviation displayed<sup><a href="references.html#ref-video2" style="color: #f97316; text-decoration: underline; font-weight: 600;">[7]</a></sup>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="section" style="background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white;">
+    <div class="container text-center">
+      <h2 style="color: white;">Ready to Begin Your Learning Journey?</h2>
+      <p style="color: rgba(255,255,255,0.9); font-size: 1.125rem;">Start with sensor fundamentals to build your foundation, then progress through algorithms and hands-on activities.</p>
+      <div style="margin-top:2rem;">
+        <a href="sensors.html" style="background:#fff;color:var(--primary);padding:1rem 2.5rem;border-radius:var(--radius-lg);font-weight:600;text-decoration:none;font-size:1.1rem;">Start Tutorial</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <p>© <span id="current-year">2024</span> Assistive Crosswalk Navigation Tutorial</p>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

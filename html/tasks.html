@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Core Tasks</title>
+  <link rel="stylesheet" href="../css/styles.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Header Navigation -->
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="index.html"><span class="logo">AC</span><span>Assistive Crosswalk Navigation</span></a>
+    <nav class="links">
+      <a href="sensors.html">Sensors</a>
+      <a href="tasks.html" class="active">Tasks</a>
+      <a href="algorithms.html">Algorithms</a>
+      <a href="activities.html">Activities</a>
+      <a href="references.html">References</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <nav class="breadcrumb"><a href="index.html">Home</a> › Tasks</nav>
+  <h1>Core Tasks: What the System Must Do</h1>
+  <p>Every navigation system must solve four problems: <strong>find</strong> the crosswalk, <strong>calculate</strong> alignment error, <strong>recognize</strong> signals, and <strong>detect</strong> obstacles. Each task has specific accuracy requirements and failure modes. Understanding what can go wrong guides algorithm selection.</p>
+
+  <!-- Audio Narration Player -->
+  <div class="trailcast mt-2" data-title="Unit: Core Tasks" data-src="../media/narration-tasks.mp3"></div>
+
+  <!-- Task Overview Cards -->
+  <div class="grid mt-3">
+    <button class="card task-tile" data-popup="m1">
+      <h3>1. Crosswalk Detection</h3>
+      <p class="card-description">Identify and locate crosswalk markings in varied visual conditions</p>
+      <div class="card-meta">Click to explore details</div>
+    </button>
+    <button class="card task-tile" data-popup="m2">
+      <h3>2. Alignment & Orientation</h3>
+      <p class="card-description">Calculate heading error and provide corrective guidance</p>
+      <div class="card-meta">Click to explore details</div>
+    </button>
+    <button class="card task-tile" data-popup="m3">
+      <h3>3. Signal Recognition</h3>
+      <p class="card-description">Interpret pedestrian traffic signals and timing</p>
+      <div class="card-meta">Click to explore details</div>
+    </button>
+    <button class="card task-tile" data-popup="m4">
+      <h3>4. Obstacle Awareness</h3>
+      <p class="card-description">Detect and warn about potential collision hazards</p>
+      <div class="card-meta">Click to explore details</div>
+    </button>
+  </div>
+
+  <!-- Sequential Processing Pipeline -->
+  <h2 class="mt-4">How Tasks Work Together</h2>
+  <p>Tasks execute in sequence. Each depends on the previous step's success.</p>
+
+  <section class="flow" id="process-flow" aria-labelledby="pipeline-title">
+    <h3 id="pipeline-title" class="sr-only">Sequential Processing Pipeline</h3>
+
+    <div class="step active" id="s1">
+      <h3 class="card-title" style="margin-top:0;">1. Detect Crosswalk</h3>
+      <p class="card-description">Camera identifies crosswalk stripes (zebra, ladder, or faded).</p>
+    </div>
+    <div class="arrow">⬇️</div>
+
+    <div class="step" id="s2">
+      <h3 class="card-title">2. Calculate Alignment</h3>
+      <p class="card-description">Combine camera θ_crosswalk with IMU θ_user to compute Δθ = θ_user - θ_crosswalk. Guide user to achieve |Δθ| < 3°.</p>
+    </div>
+    <div class="arrow">⬇️</div>
+
+    <div class="step" id="s3">
+      <h3 class="card-title">3. Check Traffic Signal</h3>
+      <p class="card-description">Detect walk/don't walk state. If uncertain or "don't walk," advise waiting. Proceed only with high confidence "walk" signal.</p>
+    </div>
+    <div class="arrow">⬇️</div>
+
+    <div class="step" id="s4">
+      <h3 class="card-title">4. Monitor Obstacles</h3>
+      <p class="card-description">Track vehicles, cyclists, pedestrians in crossing path. Alert if collision risk detected. Continuous monitoring during crossing.</p>
+    </div>
+  </section>
+
+  <!-- Pipeline Controls -->
+  <div class="btnrow" style="margin-top: 16px;">
+    <button class="btn" onclick="nextStep()">Next Step</button>
+  </div>
+
+  <!-- Performance Metrics Table -->
+  <h2 class="mt-4">How We Measure Task Performance</h2>
+  <p>Research papers report standardized metrics to compare approaches fairly. Understanding these helps evaluate which systems work best.</p>
+
+  <table class="mt-2">
+    <thead>
+      <tr><th>Task</th><th>Key Metrics</th><th>Good Performance</th><th>How Measured</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Detection</strong></td>
+        <td>Detection rate, false positive rate, angle error</td>
+        <td>≥95% detection, &lt;5% false positives, &lt;5° angle error</td>
+        <td>Test on 1000+ labeled images across lighting conditions</td>
+      </tr>
+      <tr>
+        <td><strong>Alignment</strong></td>
+        <td>Heading accuracy, update latency, user study success</td>
+        <td>±3° final alignment, &lt;50ms latency, 90%+ user success</td>
+        <td>User studies: 20+ participants, 50+ crossings each</td>
+      </tr>
+      <tr>
+        <td><strong>Signals</strong></td>
+        <td>Recognition accuracy, false negative rate</td>
+        <td>≥98% accuracy, 0% missed "don't walk" (safety critical)</td>
+        <td>Test on 500+ signal images, varied distances/angles</td>
+      </tr>
+      <tr>
+        <td><strong>Obstacles</strong></td>
+        <td>Vehicle detection rate, false alarm rate, warning time</td>
+        <td>100% vehicle detection, &lt;10% false alarms, ≥2s warning</td>
+        <td>Test with staged vehicle approaches, measure reaction time</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Modal: Task 1 – Crosswalk Detection -->
+  <div class="modal" id="m1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3>Task 1: Crosswalk Detection</h3>
+        <button class="modal-close" aria-label="Close" data-close>✕</button>
+      </div>
+      <div class="modal-body two">
+        <div>
+          <p>The system identifies painted crosswalk markings such as zebra or ladder patterns, even when faded or partially occluded. Classical methods capture stripe geometry, while deep models like YOLO or segmentation handle complex conditions.</p>
+
+          <h4>Performance Factors</h4>
+          <p><strong>Optimal conditions:</strong> Clear zebra stripes in good lighting (92-95% accuracy), Hough Transform clustering for partial occlusion, CNN segmentation handles faded paint and varied lighting.</p>
+
+          <p><strong>Challenges:</strong> Faded paint drops classical CV to 65% (CNN maintains 88-92%), heavy shadows confuse edge detection, vehicle occlusion blocks stripe visibility, non-standard ladder-style markings require specific training.</p>
+
+          <p style="font-size: 1.05rem;"><strong>Target:</strong> ≥95% detection rate, <100ms latency, <5° angle error</p>
+        </div>
+        <figure class="media">
+          <img src="../media/crosswalk.jpg" alt="Crosswalk detection showing zebra stripes with bounding box and confidence score">
+          <p style="text-align: center; margin-top: 0.5rem; font-size: 0.9rem; color: #64748b; font-style: italic;">
+            Figure 6: Real-time crosswalk detection using computer vision. Green bounding box indicates detected crosswalk region with confidence score of 0.998. System identifies zebra stripe patterns and calculates centerline orientation for alignment guidance<sup><a href="references.html#ref12" style="color: #f97316; text-decoration: underline; font-weight: 600;">[12]</a></sup>
+          </p>
+        </figure>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Task 2 – Alignment & Orientation -->
+  <div class="modal" id="m2" aria-hidden="true">
+    <div class="modal-dialog" style="max-width: 900px;">
+      <div class="modal-header">
+        <h3>Task 2: Alignment & Orientation</h3>
+        <button class="modal-close" aria-label="Close" data-close>✕</button>
+      </div>
+      <div class="modal-body two">
+        <div>
+          <p>Once the crosswalk is detected, the system estimates its centerline and compares it with the pedestrian's heading. Vanishing point geometry or segmentation masks calculate alignment error. Corrective guidance (e.g., "rotate 10° left") ensures the user enters and maintains the correct path.</p>
+
+          <div style="background: var(--bg-secondary); padding: 1rem; border-radius: var(--radius-md); margin: 1rem 0; text-align: center;">
+            <div style="font-size: 1.3rem; font-weight: 700; color: var(--primary);">Δθ = θ_user - θ_crosswalk</div>
+          </div>
+
+          <h4>Performance Factors</h4>
+          <p><strong>Optimal conditions:</strong> Vest-mounted IMU provides ±1-2° noise (Son & Weiland 2022), Kalman filtering optimally fuses camera + IMU data, 50Hz real-time updates feel responsive.</p>
+
+          <p><strong>Challenges:</strong> Smartphone hand shake introduces ±5-8° IMU noise, gyroscope drift accumulates at 2-5°/minute, delayed feedback causes users to overshoot corrections.</p>
+
+          <p style="font-size: 1.05rem;"><strong>Target:</strong> |Δθ| < 3° for safe crossing, <50ms latency</p>
+        </div>
+        <figure class="media">
+          <video autoplay loop muted playsinline preload="metadata" style="width: 100%; min-height: 500px; max-height: 600px; border-radius: var(--radius-lg);">
+            <source src="../media/alignment-sample.mp4" type="video/mp4">
+            Your browser does not support the video element.
+          </video>
+          <p style="text-align: center; margin-top: 0.5rem; font-size: 0.9rem; color: #64748b; font-style: italic;">
+            Figure 7: Dynamic alignment and orientation tracking demonstration.<sup><a href="references.html#ref13" style="color: #f97316; text-decoration: underline; font-weight: 600;">[13]</a></sup>
+          </p>
+        </figure>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Task 3 – Signal Recognition -->
+  <div class="modal" id="m3" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3>Task 3: Signal Recognition</h3>
+        <button class="modal-close" aria-label="Close" data-close>✕</button>
+      </div>
+      <div class="modal-body two">
+        <div>
+          <p>Traffic light analysis determines whether it is safe to cross. Color thresholding detects red/green lights, while deep detectors classify pedestrian vs. vehicle signals and interpret countdown timers. Systems use conservative "when uncertain, wait" logic.</p>
+
+          <h4>Performance Factors</h4>
+          <p><strong>Optimal conditions:</strong> High contrast signals (white on black) achieve 95%+ accuracy, audio beacon detection from chirping sounds is reliable, conservative decision logic prioritizes safety.</p>
+
+          <p><strong>Challenges:</strong> Bright sunlight glare washes out visibility, signals become too small beyond 30m distance, regional variations (hand vs figure vs text symbols) require diverse training, obstructed views from trees or poles.</p>
+
+          <p style="font-size: 1.05rem;"><strong>Critical requirement:</strong> ≥98% accuracy, 0% missed "don't walk" signals (safety-first approach)</p>
+        </div>
+        <figure class="media">
+          <img src="../media/signal-samples.jpg" alt="Traffic light detection showing red light and green light recognition with confidence scores">
+          <p style="text-align: center; margin-top: 0.5rem; font-size: 0.9rem; color: #64748b; font-style: italic;">
+            Figure 8: Real-time pedestrian traffic signal detection and classification. Left: Red light detected with 0.77 confidence score. Right: Green light detected with 0.84 confidence score. System uses color thresholding and deep learning for reliable signal state recognition<sup><a href="references.html#ref14" style="color: #f97316; text-decoration: underline; font-weight: 600;">[14]</a></sup>
+          </p>
+        </figure>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Task 4 – Obstacle Awareness -->
+  <div class="modal" id="m4" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3>Task 4: Obstacle Awareness</h3>
+        <button class="modal-close" aria-label="Close" data-close>✕</button>
+      </div>
+      <div class="modal-body two">
+        <div>
+          <p>The system monitors for vehicles, cyclists, or unexpected barriers along the path. Object detection models estimate distance and urgency of hazards. Alerts prioritize safety with audio or haptic feedback when potential collisions are detected.</p>
+
+          <h4>Performance Factors</h4>
+          <p><strong>Optimal conditions:</strong> YOLO/SSD models achieve 95%+ vehicle detection in real-time, RGB-D sensors provide accurate depth measurement, motion tracking analyzes velocity and trajectory, multi-level alerts scale from warning to urgent based on time-to-collision.</p>
+
+          <p><strong>Challenges:</strong> Small/fast objects like cyclists are harder to detect than cars, stationary obstacles (parked equipment, poles) may be missed, crowded pedestrian scenes overwhelm the system, false alarms from parked vehicles cause alert fatigue.</p>
+
+          <p style="font-size: 1.05rem;"><strong>Target:</strong> 100% vehicle detection, <10% false alarms, ≥2s warning time</p>
+        </div>
+        <figure class="media">
+          <img src="../media/obstacle-detection.jpg" alt="Urban street scene with real-time object detection showing multiple pedestrians, vehicles, and cyclists">
+          <p style="text-align: center; margin-top: 0.5rem; font-size: 0.9rem; color: #64748b; font-style: italic;">
+            Figure 9: Multi-object detection for obstacle awareness at crosswalks. Color-coded bounding boxes classify pedestrians (green), vehicles (orange), and bicycles (magenta) with confidence scores, enabling proximity-based collision warnings<sup><a href="references.html#ref11" style="color: #f97316; text-decoration: underline; font-weight: 600;">[11]</a></sup>
+          </p>
+        </figure>
+      </div>
+    </div>
+  </div>
+
+  <!-- Call to Action: Next Section -->
+  <div style="background: var(--bg-secondary); padding: 2rem; border-radius: var(--radius-lg); margin-top: 3rem; text-align: center;">
+    <h3>Ready to Explore Implementation Approaches?</h3>
+    <p>Now that you understand what the system must accomplish, discover how different algorithms tackle these challenges.</p>
+    <a href="algorithms.html" style="background: var(--primary); color: white; padding: 1rem 2rem; border-radius: var(--radius-lg); text-decoration: none; font-weight: 600; display: inline-block; margin-top: 1rem;">Learn Algorithms →</a>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="wrap">
+    <p>© <span id="current-year">2024</span> Assistive Crosswalk Navigation Tutorial</p>
+  </div>
+</footer>
+
+<!-- Main JavaScript -->
+<script src="../js/main.js"></script>
+</body>
+</html>

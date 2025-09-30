@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Sensors &amp; Inputs</title>
+  <link rel="stylesheet" href="../css/styles.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Header Navigation -->
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="index.html"><span class="logo">AC</span><span>Assistive Crosswalk Navigation</span></a>
+    <nav class="links">
+      <a href="sensors.html" aria-current="page">Sensors</a>
+      <a href="tasks.html">Tasks</a>
+      <a href="algorithms.html">Algorithms</a>
+      <a href="activities.html">Activities</a>
+      <a class="cta" href="references.html">References</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <nav class="breadcrumb"><a href="index.html">Home</a> › Sensors</nav>
+  <h1>Sensors: What Makes Navigation Possible</h1>
+  <p>Three sensors work together:
+    <strong>Camera</strong> sees the crosswalk,
+    <strong>IMU</strong> tracks your heading,
+    <strong>GPS</strong> provides context.
+    Understanding what each contributes—and their limitations—is key to building reliable systems.</p>
+
+  <!-- Audio Narration Player -->
+  <div class="trailcast mt-2" data-title="Unit: Sensors & Inputs" data-src="../media/narration-sensors.mp3"></div>
+
+  <!-- Sensor Comparison Table -->
+  <h2 class="mt-4">Sensor Capabilities Overview</h2>
+  <table class="mt-3">
+    <thead>
+      <tr>
+        <th>Sensor</th>
+        <th>Primary Function</th>
+        <th>Advantages</th>
+        <th>Limitations</th>
+        <th>Best Use Case</th>
+        <th>Power Usage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Camera (RGB)</strong></td>
+        <td>Visual features: stripes, signals, vehicles, signs</td>
+        <td>Ubiquitous, high resolution, rich visual data</td>
+        <td>Lighting sensitive, motion blur, weather dependent</td>
+        <td>Primary crosswalk detection</td>
+        <td>Medium</td>
+      </tr>
+      <tr>
+        <td><strong>IMU (Accel + Gyro)</strong></td>
+        <td>User heading, device tilt, motion detection</td>
+        <td>Always available, low power, real-time updates</td>
+        <td>Drift over time, noise from hand movement</td>
+        <td>θ_user for Δθ calculation</td>
+        <td>Very Low</td>
+      </tr>
+      <tr>
+        <td><strong>GPS</strong></td>
+        <td>Global location, intersection proximity</td>
+        <td>Global coverage, intersection database integration</td>
+        <td>Urban canyon interference, 3-5m accuracy</td>
+        <td>Context awareness, intersection detection</td>
+        <td>Medium</td>
+      </tr>
+      <tr>
+        <td><strong>Microphone</strong></td>
+        <td>Traffic audio, vehicle approach, ambient sound</td>
+        <td>Works in low light, directional information</td>
+        <td>Noisy urban environments, signal ambiguity</td>
+        <td>Supplement vision in poor lighting</td>
+        <td>Low</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Wearable vs Smartphone Comparison -->
+  <h2 class="mt-4">Wearable vs Smartphone Systems</h2>
+  <p>Research prototypes use body-worn sensors for better performance. Most users prefer smartphone apps for convenience.</p>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 1000px; margin: 2rem auto;">
+    <!-- Wearable Systems Column -->
+    <div>
+      <h3 style="text-align: center; color: var(--primary); margin-bottom: 1rem;">Wearable Prototypes</h3>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+        <figure class="media">
+          <img src="../media/wearable-system-1.jpeg" alt="Person wearing navigation vest with sensor components labeled" style="width: 100%; height: auto;">
+          <p style="text-align: center; margin-top: 0.5rem; font-size: 0.9rem; color: #64748b; font-style: italic;">
+            Figure 3: Wearable navigation system prototype showing integrated sensor components: headset with cameras, sensor vest with microcontroller and stereo cameras, cellphone gateway, haptic belt with ultrasonic and infrared TOF sensors<sup><a href="references.html#ref8" style="color: #f97316; text-decoration: underline; font-weight: 600;">[8]</a></sup>
+          </p>
+        </figure>
+
+        <figure class="media">
+          <video autoplay loop muted playsinline preload="metadata" style="width: 100%; border-radius: var(--radius-lg);">
+            <source src="../media/wearable-demo.mp4" type="video/mp4">
+            Your browser does not support the video element.
+          </video>
+          <p style="text-align: center; margin-top: 0.5rem; font-size: 0.9rem; color: #64748b; font-style: italic;">
+            Figure 4: Wearable Smart Band designed to help blind people navigate their surroundings safely and independently.<sup><a href="references.html#ref9" style="color: #f97316; text-decoration: underline; font-weight: 600;">[9]</a></sup>
+          </p>
+        </figure>
+      </div>
+    </div>
+
+    <!-- Smartphone Systems Column -->
+    <div style="display: flex; flex-direction: column;">
+      <h3 style="text-align: center; color: var(--primary); margin-bottom: 1rem;">Smartphone Apps</h3>
+
+      <figure class="media" style="flex: 1; display: flex; flex-direction: column;">
+        <img src="../media/smartphone-signals.jpg" alt="Two smartphones showing walk signal in green and don't walk signal in red" style="width: 100%; flex: 1; object-fit: contain;">
+        <p style="text-align: center; margin-top: 0.5rem; font-size: 0.9rem; color: #64748b; font-style: italic;">
+          Figure 5: Smartphone-based pedestrian signal recognition interface. Left: Green overlay indicates "Walk" signal detected with safe-to-cross confirmation. Right: Red overlay shows "Don't Walk" signal with audio warning to wait<sup><a href="references.html#ref10" style="color: #f97316; text-decoration: underline; font-weight: 600;">[10]</a></sup>
+        </p>
+      </figure>
+    </div>
+  </div>
+
+  <p class="mt-2"><strong>Bottom line:</strong> Wearables perform better but smartphone apps reach more users. Hybrid approach: phone app + optional Bluetooth haptic belt.</p>
+
+  <!-- Real-World Challenges Section -->
+  <h2 class="mt-4">Real-World Challenges</h2>
+  <p>Sensors fail in common conditions. Systems must handle these or gracefully degrade.</p>
+
+  <div class="grid grid-3 mt-2">
+    <div class="card">
+      <h3>Lighting Problems</h3>
+      <ul style="font-size: 1.05rem;">
+        <li><strong>Glare:</strong> Accuracy drops to 72%</li>
+        <li><strong>Shadows:</strong> Detection falls to 68%</li>
+        <li><strong>Night:</strong> 45% without streetlights</li>
+      </ul>
+      <p><strong>Fix:</strong> HDR imaging, switch to audio guidance when confidence &lt; 60%</p>
+    </div>
+
+    <div class="card">
+      <h3>Faded Paint</h3>
+      <ul style="font-size: 1.05rem;">
+        <li>32% of crosswalks have degraded markings</li>
+        <li>Classical CV: 90% → 65% accuracy</li>
+        <li>CNN-based: Maintains 88-92%</li>
+      </ul>
+      <p><strong>Fix:</strong> Train AI on faded examples, validate with GPS database</p>
+    </div>
+
+    <div class="card">
+      <h3>IMU Drift & Shake</h3>
+      <ul style="font-size: 1.05rem;">
+        <li>Drift: 2-5°/minute</li>
+        <li>Hand shake: ±3-8° noise</li>
+        <li>Affects smartphone users most</li>
+      </ul>
+      <p><strong>Fix:</strong> 5-frame moving average filter, magnetometer correction</p>
+    </div>
+  </div>
+
+  <!-- Interactive Sensor Matching Activity -->
+  <h2 class="mt-4">Interactive Learning: Match Sensors to Use Cases</h2>
+  <p class="small">Drag each sensor type to its best-suited navigation task. This reinforces understanding of when to use each sensor component effectively.</p>
+
+  <div class="drag-drop-container">
+    <div class="drag-drop-title">Sensor-Task Matching Challenge</div>
+    <div class="drag-drop-game">
+      <div class="drag-items">
+        <h4>Sensor Types</h4>
+        <div class="drag-item" data-match="alignment" draggable="true">IMU (Accelerometer + Gyroscope)</div>
+        <div class="drag-item" data-match="detection" draggable="true">RGB Camera</div>
+        <div class="drag-item" data-match="context" draggable="true">GPS</div>
+        <div class="drag-item" data-match="depth" draggable="true">LiDAR/RGB-D</div>
+        <div class="drag-item" data-match="audio" draggable="true">Microphone</div>
+      </div>
+
+      <div class="drop-zones">
+        <h4>Navigation Tasks</h4>
+        <div class="drop-zone" data-target="detection">Visual crosswalk stripe detection</div>
+        <div class="drop-zone" data-target="alignment">User heading for Δθ calculation</div>
+        <div class="drop-zone" data-target="context">Intersection location awareness</div>
+        <div class="drop-zone" data-target="depth">3D obstacle distance measurement</div>
+        <div class="drop-zone" data-target="audio">Traffic flow pattern recognition</div>
+      </div>
+    </div>
+
+    <div class="drag-drop-feedback" style="display: none;"></div>
+    <button class="drag-drop-reset">Reset Activity</button>
+  </div>
+
+  <!-- Call to Action: Next Section -->
+  <div style="background: var(--bg-secondary); padding: 2rem; border-radius: var(--radius-lg); margin-top: 3rem; text-align: center;">
+    <h3>Ready to Explore System Tasks?</h3>
+    <p>Now that you understand the sensor foundation, discover what these systems must accomplish to provide effective navigation assistance.</p>
+    <a href="tasks.html" style="background: var(--primary); color: white; padding: 1rem 2rem; border-radius: var(--radius-lg); text-decoration: none; font-weight: 600; display: inline-block; margin-top: 1rem;">Explore Core Tasks →</a>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="wrap">
+    <p>© <span id="current-year">2025</span> Assistive Crosswalk Navigation Tutorial</p>
+  </div>
+</footer>
+
+<!-- Main JavaScript -->
+<script src="../js/main.js"></script>
+</body>
+</html>

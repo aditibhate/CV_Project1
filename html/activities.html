@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Interactive Activities</title>
+  <link rel="stylesheet" href="../css/styles.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Header Navigation -->
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="index.html"><span class="logo">AC</span><span>Assistive Crosswalk Navigation</span></a>
+    <nav class="links">
+      <a href="sensors.html">Sensors</a>
+      <a href="tasks.html">Tasks</a>
+      <a href="algorithms.html">Algorithms</a>
+      <a href="activities.html" class="active">Activities</a>
+      <a href="references.html">References</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap" id="main-content">
+  <nav class="breadcrumb"><a href="index.html">Home</a> › Activities</nav>
+  <h1>Interactive Activities</h1>
+  <p>Reinforce your understanding through hands-on demonstrations and practical applications. These activities simulate real-world challenges in assistive crosswalk navigation.</p>
+
+  <!-- Audio Narration Player -->
+  <div class="trailcast mt-2" data-title="Unit: Interactive Activities" data-src="../media/narration-activities.mp3"></div>
+
+  <!-- Knowledge Check Quiz Section -->
+  <h2 class="mt-4" id="knowledge-check">Knowledge Check</h2>
+  <p>Test key concepts with these quick questions:</p>
+
+  <!-- Quiz Question 1: Sensor Noise Troubleshooting -->
+  <div class="media quiz-card" data-quiz="q1" style="padding:1.5rem; margin-bottom: 1rem;">
+    <p class="quiz-question"><strong>1) A system rapidly alternates between "turn left" and "turn right" guidance. Which sensor is causing this and what's the solution?</strong></p>
+    <div class="quiz-options" style="display:flex; flex-direction: column; gap: 0.75rem; margin: 1rem 0;">
+      <button class="quiz-option" data-quiz-choice style="background: var(--bg-primary); border: 2px solid var(--border); padding: 1rem 1.5rem; border-radius: var(--radius-md); cursor: pointer; text-align: left; font-size: 1.1rem; display: block; width: 100%;">GPS multipath interference → increase update rate</button>
+      <button class="quiz-option" data-quiz-choice data-correct="true" style="background: var(--bg-primary); border: 2px solid var(--border); padding: 1rem 1.5rem; border-radius: var(--radius-md); cursor: pointer; text-align: left; font-size: 1.1rem; display: block; width: 100%;">IMU noise from hand movement → apply moving average filter</button>
+      <button class="quiz-option" data-quiz-choice style="background: var(--bg-primary); border: 2px solid var(--border); padding: 1rem 1.5rem; border-radius: var(--radius-md); cursor: pointer; text-align: left; font-size: 1.1rem; display: block; width: 100%;">Camera processing lag → reduce image resolution</button>
+    </div>
+    <p class="small" data-quiz-result style="margin-top: 1rem; display: none; padding: 0.75rem; border-radius: var(--radius-md);"></p>
+  </div>
+
+  <!-- Quiz Question 2: Algorithm Selection -->
+  <div class="media quiz-card" data-quiz="q2" style="padding:1.5rem; margin-bottom: 1rem;">
+    <p class="quiz-question"><strong>2) For varied crosswalk markings under challenging lighting, which approach offers best accuracy?</strong></p>
+    <div class="quiz-options" style="display:flex; flex-direction: column; gap: 0.75rem; margin: 1rem 0;">
+      <button class="quiz-option" data-quiz-choice style="background: var(--bg-primary); border: 2px solid var(--border); padding: 1rem 1.5rem; border-radius: var(--radius-md); cursor: pointer; text-align: left; font-size: 1.1rem; display: block; width: 100%;">Classical edge detection + Hough transform</button>
+      <button class="quiz-option" data-quiz-choice data-correct="true" style="background: var(--bg-primary); border: 2px solid var(--border); padding: 1rem 1.5rem; border-radius: var(--radius-md); cursor: pointer; text-align: left; font-size: 1.1rem; display: block; width: 100%;">CNN-based segmentation with data augmentation</button>
+      <button class="quiz-option" data-quiz-choice style="background: var(--bg-primary); border: 2px solid var(--border); padding: 1rem 1.5rem; border-radius: var(--radius-md); cursor: pointer; text-align: left; font-size: 1.1rem; display: block; width: 100%;">Template matching approach</button>
+    </div>
+    <p class="small" data-quiz-result style="margin-top: 1rem; display: none; padding: 0.75rem; border-radius: var(--radius-md);"></p>
+  </div>
+
+  <!-- Quiz Question 3: Sensor Fusion Strategy -->
+  <div class="media quiz-card" data-quiz="q3" style="padding:1.5rem; margin-bottom: 1rem;">
+    <p class="quiz-question"><strong>3) During crossing, the system loses visual detection due to shadows but IMU remains stable. What should the system do?</strong></p>
+    <div class="quiz-options" style="display:flex; flex-direction: column; gap: 0.75rem; margin: 1rem 0;">
+      <button class="quiz-option" data-quiz-choice style="background: var(--bg-primary); border: 2px solid var(--border); padding: 1rem 1.5rem; border-radius: var(--radius-md); cursor: pointer; text-align: left; font-size: 1.1rem; display: block; width: 100%;">Stop all guidance until vision recovers</button>
+      <button class="quiz-option" data-quiz-choice data-correct="true" style="background: var(--bg-primary); border: 2px solid var(--border); padding: 1rem 1.5rem; border-radius: var(--radius-md); cursor: pointer; text-align: left; font-size: 1.1rem; display: block; width: 100%;">Continue using last known heading with reduced confidence</button>
+      <button class="quiz-option" data-quiz-choice style="background: var(--bg-primary); border: 2px solid var(--border); padding: 1rem 1.5rem; border-radius: var(--radius-md); cursor: pointer; text-align: left; font-size: 1.1rem; display: block; width: 100%;">Switch entirely to GPS-based navigation</button>
+    </div>
+    <p class="small" data-quiz-result style="margin-top: 1rem; display: none; padding: 0.75rem; border-radius: var(--radius-md);"></p>
+  </div>
+
+  <!-- Quiz Question 4: Angle Calculation -->
+  <div class="media quiz-card" data-quiz="q4" style="padding:1.5rem; margin-bottom: 1rem;">
+    <p class="quiz-question"><strong>4) IMU reports θ_user = 45°, computer vision detects θ_crosswalk = 30°. What guidance should be provided?</strong></p>
+    <div class="quiz-options" style="display:flex; flex-direction: column; gap: 0.75rem; margin: 1rem 0;">
+      <button class="quiz-option" data-quiz-choice data-correct="true" style="background: var(--bg-primary); border: 2px solid var(--border); padding: 1rem 1.5rem; border-radius: var(--radius-md); cursor: pointer; text-align: left; font-size: 1.1rem; display: block; width: 100%;">"Turn right" (Δθ = +15°, user is left of optimal heading)</button>
+      <button class="quiz-option" data-quiz-choice style="background: var(--bg-primary); border: 2px solid var(--border); padding: 1rem 1.5rem; border-radius: var(--radius-md); cursor: pointer; text-align: left; font-size: 1.1rem; display: block; width: 100%;">"Turn left" (Δθ = -15°, user is right of optimal heading)</button>
+      <button class="quiz-option" data-quiz-choice style="background: var(--bg-primary); border: 2px solid var(--border); padding: 1rem 1.5rem; border-radius: var(--radius-md); cursor: pointer; text-align: left; font-size: 1.1rem; display: block; width: 100%;">"Go straight" (error within acceptable tolerance)</button>
+    </div>
+    <p class="small" data-quiz-result style="margin-top: 1rem; display: none; padding: 0.75rem; border-radius: var(--radius-md);"></p>
+  </div>
+
+  <!-- Quiz Progress Tracking -->
+  <div class="quiz-progress"><div class="quiz-progress-bar" style="width: 0%"></div></div>
+  <div class="quiz-summary"><span class="quiz-score">0 / 4 correct</span></div>
+
+  <!-- Audio Feedback Simulation Section -->
+  <h2 class="mt-4">Audio Feedback Simulation</h2>
+  <p>Experience the audio guidance that navigation systems provide:</p>
+
+  <div class="two">
+    <div>
+      <h3>Guidance Tones</h3>
+      <div class="audio-grid">
+        <div class="audio-item">
+          <div class="audio-title">Perfect Alignment</div>
+          <audio controls preload="metadata"><source src="../media/tone-steady.mp3" type="audio/mp3"></audio>
+        </div>
+        <div class="audio-item">
+          <div class="audio-title">Turn Left Signal</div>
+          <audio controls preload="metadata"><source src="../media/tone-left.mp3" type="audio/mp3"></audio>
+        </div>
+        <div class="audio-item">
+          <div class="audio-title">Turn Right Signal</div>
+          <audio controls preload="metadata"><source src="../media/tone-right.mp3" type="audio/mp3"></audio>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Alignment Game -->
+  <h2 class="mt-4" id="alignment-game">Crosswalk Alignment Simulator</h2>
+
+  <!-- Game Instructions Panel -->
+  <div style="background: var(--bg-secondary); padding: 2rem; border-radius: var(--radius-lg); margin-bottom: 2rem; border-left: 4px solid var(--primary);">
+    <h3 style="color: var(--primary); margin-bottom: 1rem;">🎯 How to Play the Alignment Game</h3>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; font-size: 1.1rem;">
+      <div>
+        <h4>Goal:</h4>
+        <p>Align your heading (green arrow) with the crosswalk centerline (red line)</p>
+
+        <h4>Controls:</h4>
+        <ul>
+          <li><strong>Turn Left:</strong> Rotate your heading counter-clockwise</li>
+          <li><strong>Turn Right:</strong> Rotate your heading clockwise</li>
+          <li><strong>Reset:</strong> Start over with a random misalignment</li>
+          <li><strong>New Scenario:</strong> Get a completely new crosswalk angle</li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Success Criteria:</h4>
+        <ul>
+          <li><strong>Perfect:</strong> Within ±3° = Ready to cross safely</li>
+          <li><strong>Good:</strong> Within ±10° = Minor adjustment needed</li>
+          <li><strong>Poor:</strong> >10° off = Significant correction required</li>
+        </ul>
+
+        <h4>Real-World Mapping:</h4>
+        <p><strong>Formula:</strong> Δθ = θ_user - θ_crosswalk</p>
+        <p>This simulates how IMU (your heading) and camera (crosswalk detection) combine for navigation guidance.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Game Canvas and Controls -->
+  <div class="game-container">
+    <div class="game-stage">
+      <!-- Rotatable Crosswalk Element -->
+      <div id="crosswalk" class="game-crosswalk"></div>
+
+      <!-- User Avatar with Heading Indicator -->
+      <div id="user" class="game-user">
+        👤
+        <div id="direction" class="game-direction"></div>
+      </div>
+
+      <!-- Real-time Data Display -->
+      <div id="display" class="game-display">
+        User: 0°<br>Crosswalk: 0°<br>Error (Δθ): 0°
+      </div>
+    </div>
+
+    <!-- Game Control Buttons -->
+    <div class="game-controls">
+      <button onclick="turnLeft()">← Turn Left (-5°)</button>
+      <button onclick="resetGame()">🎯 Reset Position</button>
+      <button onclick="turnRight()">Turn Right (+5°) →</button>
+      <button onclick="newScenario()">🔄 New Scenario</button>
+    </div>
+
+    <!-- Dynamic Feedback Messages -->
+    <div id="feedback" class="game-feedback">
+      Click Turn Left or Turn Right to adjust your heading
+    </div>
+
+    <!-- Performance Statistics -->
+    <div class="game-stats">
+      <div class="game-stat">
+        <div class="game-stat-label">Attempts</div>
+        <div class="game-stat-value" id="attempts">0</div>
+      </div>
+      <div class="game-stat">
+        <div class="game-stat-label">Perfect</div>
+        <div class="game-stat-value" id="perfect">0</div>
+      </div>
+      <div class="game-stat">
+        <div class="game-stat-label">Success Rate</div>
+        <div class="game-stat-value" id="successRate">0%</div>
+      </div>
+      <div class="game-stat">
+        <div class="game-stat-label">Best Accuracy</div>
+        <div class="game-stat-value" id="bestAccuracy">--°</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Game Explanation Callout -->
+  <div class="callout mt-3">
+    <div class="callout-title">Understanding the Simulation</div>
+    <div class="callout-content">
+      <p><strong>What's Happening:</strong> This simulates the core math behind assistive navigation systems:</p>
+      <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+        <li><strong>Green arrow:</strong> Your heading direction (θ_user from IMU sensor)</li>
+        <li><strong>Red line on crosswalk:</strong> The optimal centerline direction (θ_crosswalk from camera)</li>
+        <li><strong>The math:</strong> Δθ = θ_user - θ_crosswalk calculates how far off you are</li>
+        <li><strong>Real navigation:</strong> Audio feedback like "turn left" or "perfect alignment" guides users</li>
+      </ul>
+      <p><strong>Practice Goal:</strong> Get comfortable with how small angle adjustments lead to safe crossing alignment. Each turn is 5° - in reality, systems need ±3° accuracy for safety.</p>
+    </div>
+  </div>
+
+  <!-- Tutorial Summary Section -->
+  <h2 class="mt-4">What You've Learned</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>📱 Sensors</h3>
+      <p>Camera, IMU, and GPS work together. The core calculation Δθ = θ_user - θ_crosswalk drives all guidance.</p>
+    </div>
+    <div class="card">
+      <h3>🎯 Tasks</h3>
+      <p>Detection, alignment, signals, and obstacles each have specific requirements and challenges.</p>
+    </div>
+    <div class="card">
+      <h3>⚙️ Algorithms</h3>
+      <p>Classical CV offers speed and simplicity. Deep learning provides robustness. Choose based on requirements.</p>
+    </div>
+    <div class="card">
+      <h3>🧩 Practice</h3>
+      <p>Hands-on experience with visual processing, audio feedback, and alignment simulation.</p>
+    </div>
+  </div>
+
+  <!-- Call to Action: Next Steps -->
+  <div style="background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; padding: 2rem; border-radius: var(--radius-lg); margin-top: 3rem; text-align: center;">
+    <h3 style="color: white;">Tutorial Complete!</h3>
+    <p style="color: rgba(255,255,255,0.9); font-size: 1.1rem;">You now understand the fundamentals of assistive crosswalk navigation technology. Ready to explore the research foundation?</p>
+    <a href="references.html" style="background: #fff; color: var(--primary); padding: 1rem 2rem; border-radius: var(--radius-lg); text-decoration: none; font-weight: 600; display: inline-block; margin-top: 1rem;">View Research Sources →</a>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="wrap">
+    <p>© <span id="current-year">2024</span> Assistive Crosswalk Navigation Tutorial</p>
+  </div>
+</footer>
+
+<!-- Main JavaScript -->
+<script src="../js/main.js"></script>
+
+<!-- Game Initialization Script -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    try {
+      if (typeof initializeGameFunctionality === 'function') {
+        initializeGameFunctionality();
+      }
+      if (document.getElementById('crosswalk') &&
+          typeof newScenario === 'function' &&
+          typeof updateGameDisplay === 'function') {
+        newScenario();
+        updateGameDisplay();
+      }
+    } catch (e) {
+      console.error('Game init error:', e);
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Algorithms - Modern Approaches</title>
+  <link rel="stylesheet" href="../css/styles.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Header Navigation -->
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="index.html"><span class="logo">AC</span><span>Assistive Crosswalk Navigation</span></a>
+    <nav class="links">
+      <a href="sensors.html">Sensors</a>
+      <a href="tasks.html">Tasks</a>
+      <a href="algorithms.html" aria-current="page">Algorithms</a>
+      <a href="activities.html">Activities</a>
+      <a class="cta" href="references.html">References</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <nav class="breadcrumb"><a href="index.html">Home</a> › Algorithms</nav>
+
+  <h1>Modern Deep Learning Algorithms for Crosswalk Navigation</h1>
+
+  <p style="font-size: 1.15rem; line-height: 1.7; color: var(--text-secondary); max-width: 900px;">State-of-the-art crosswalk navigation relies on deep learning approaches that provide robust, real-time performance across diverse environmental conditions. These neural network-based methods have largely superseded classical computer vision techniques for production accessibility applications.</p>
+
+  <!-- Audio Narration Player -->
+  <div class="trailcast mt-4" data-title="Unit: Modern Algorithms Overview" data-src="../media/narration-modern-algorithms.mp3"></div>
+
+  <!-- Legacy Methods Context -->
+  <div class="callout mt-4" style="background: #fff3cd; border-left-color: #ffc107;">
+    <h3 style="color: #856404; margin-top: 0;">Legacy Classical Computer Vision Methods</h3>
+    <p style="color: #856404; margin-bottom: 1.5rem;">While foundational for early systems, classical CV methods are primarily used for preprocessing or resource-constrained scenarios today:</p>
+
+    <div class="grid-3">
+      <div class="card" style="border-left: 4px solid var(--primary); margin: 0;">
+        <h4 style="color: var(--primary); margin-top: 0; font-size: 1.15rem;">Canny Edge Detection</h4>
+        <p style="margin: 0; font-size: 1rem; line-height: 1.6;">Multi-stage edge detector using gradient analysis. Still used for preprocessing but replaced by learned features in modern systems.</p>
+      </div>
+
+      <div class="card" style="border-left: 4px solid var(--primary); margin: 0;">
+        <h4 style="color: var(--primary); margin-top: 0; font-size: 1.15rem;">Hough Transform</h4>
+        <p style="margin: 0; font-size: 1rem; line-height: 1.6;">Geometric shape detection via parameter space voting. Legacy method for line detection, now outperformed by neural networks.</p>
+      </div>
+
+      <div class="card" style="border-left: 4px solid var(--primary); margin: 0;">
+        <h4 style="color: var(--primary); margin-top: 0; font-size: 1.15rem;">Color Thresholding</h4>
+        <p style="margin: 0; font-size: 1rem; line-height: 1.6;">HSV-based color segmentation for traffic lights. Superseded by object detection networks with higher accuracy.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Primary Algorithm: YOLO Object Detection -->
+  <h2 class="mt-4">YOLO Object Detection</h2>
+
+  <p>YOLO (You Only Look Once) is the industry-standard real-time object detection system for accessibility applications.
+      It processes entire images in a single neural network forward pass, simultaneously detecting and classifying
+      multiple objects including crosswalks, vehicles, pedestrians, traffic lights, and obstacles with 30+ FPS
+      performance on mobile devices.Real-time performance at 30+ FPS for safety-critical mobile applications.
+      High computational needs and struggles with small/occluded objects</p>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem;">
+    <div>
+      <h3 style="margin-top: 0;">Critical Applications</h3>
+      <ul style="line-height: 1.8; font-size: 1.05rem;">
+        <li><strong>Multi-Object Detection:</strong> Simultaneously identifies crosswalks, vehicles, pedestrians, traffic lights, and obstacles</li>
+        <li><strong>Real-Time Tracking:</strong> Tracks moving vehicles and pedestrians across frames for trajectory prediction</li>
+        <li><strong>Priority-Based Alerts:</strong> Generates safety-critical warnings based on object class and proximity</li>
+        <li><strong>Contextual Understanding:</strong> Leverages global scene context for improved accuracy</li>
+        <li><strong>Mobile Optimization:</strong> TensorFlow Lite and ONNX Runtime enable on-device inference</li>
+      </ul>
+
+      <h3>Architecture Process</h3>
+      <ol style="line-height: 1.8; font-size: 1.05rem;">
+        <li><strong>Grid Division:</strong> Input image divided into S×S grid (e.g., 13×13 for YOLOv3)</li>
+        <li><strong>Bounding Box Regression:</strong> Each grid cell predicts B bounding boxes with confidence scores</li>
+        <li><strong>Class Probability Maps:</strong> Conditional class probabilities computed for each cell</li>
+        <li><strong>Single Forward Pass:</strong> Entire detection pipeline runs in one network evaluation</li>
+        <li><strong>Non-Maximum Suppression:</strong> IoU-based filtering removes duplicate detections</li>
+      </ol>
+    </div>
+
+    <div>
+      <h3 style="margin-top: 0;">Production Implementation</h3>
+      <pre class="code-block" style="font-size: 0.9rem;"><code>class CrosswalkYOLO:
+    def __init__(self, model_path):
+        self.interpreter = tf.lite.Interpreter(model_path)
+        self.interpreter.allocate_tensors()
+
+        # Priority classes for accessibility
+        self.priority_map = {
+            'vehicle': 0,     # Critical safety
+            'crosswalk': 1,   # Navigation
+            'traffic_light': 2 # Guidance
+        }
+
+    def detect_and_alert(self, frame):
+        # Run YOLO inference
+        detections = self.detect_objects(frame)
+
+        # Generate priority-based audio alerts
+        alerts = self.generate_audio_guidance(detections)
+
+        # Trigger haptic feedback for urgent threats
+        if self.has_urgent_threat(detections):
+            self.trigger_haptic_warning()
+
+        return {
+            'detections': detections,
+            'audio_alerts': alerts,
+            'safety_status': self.assess_safety(detections)
+        }</code></pre>
+
+      <div class="callout" style="margin-top: 1.5rem; background: var(--bg-secondary);">
+        <strong style="color: var(--primary);">Mobile Implementation:</strong> Use TensorFlow Lite with GPU delegation. Implement model quantization (INT8) for smaller size. Use platform-specific TTS and haptic feedback APIs.
+      </div>
+    </div>
+  </div>
+
+  <!-- Complementary Deep Learning Approaches -->
+  <h2 class="mt-4">Complementary Deep Learning Approaches</h2>
+
+  <p>Beyond object detection, two additional neural network approaches enhance navigation precision and safety assessment.</p>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem;">
+    <div>
+      <h3 style="margin-top: 0;">Semantic Segmentation</h3>
+      <p><strong>Purpose:</strong> Pixel-level classification of road surfaces, crosswalks, and walkable areas using models like DeepLabv3+ or U-Net.</p>
+
+      <p><strong>Key Benefit:</strong> Precise boundary detection for alignment guidance (96-98% accuracy vs 94-97% for YOLO bounding boxes).</p>
+
+      <p><strong>Tradeoff:</strong> Slower performance (5-10 FPS) and higher power consumption than YOLO.</p>
+
+      <p><strong>When to use:</strong> When centimeter-level alignment precision is critical and processing time is acceptable.</p>
+
+      <h4 style="margin-top: 1.5rem;">Architecture Overview</h4>
+      <ol style="line-height: 1.6; font-size: 1rem;">
+        <li><strong>Encoder:</strong> ResNet/MobileNet backbone extracts hierarchical features</li>
+        <li><strong>ASPP:</strong> Atrous Spatial Pyramid Pooling captures multi-scale context</li>
+        <li><strong>Decoder:</strong> Progressive upsampling to original resolution</li>
+        <li><strong>Output:</strong> Per-pixel class probabilities via softmax</li>
+      </ol>
+    </div>
+
+    <div>
+      <h3 style="margin-top: 0;">Monocular Depth Estimation</h3>
+      <p><strong>Purpose:</strong> Single-camera depth prediction using models like MiDaS to estimate distance to vehicles and obstacles without specialized hardware.</p>
+
+      <p><strong>Key Benefit:</strong> Safety assessment (vehicle distance, crossing timing) using standard smartphone cameras.</p>
+
+      <p><strong>Tradeoff:</strong> Relative depth only (not absolute measurements), 90-94% accuracy vs 100% with RGB-D sensors.</p>
+
+      <p><strong>When to use:</strong> When hardware constraints prevent stereo/LiDAR sensors but distance estimation is still needed.</p>
+
+      <h4 style="margin-top: 1.5rem;">Architecture Overview</h4>
+      <ol style="line-height: 1.6; font-size: 1rem;">
+        <li><strong>Feature Extraction:</strong> Vision Transformer or CNN processes multiple resolutions</li>
+        <li><strong>Multi-Scale Fusion:</strong> Combines features from different network layers</li>
+        <li><strong>Depth Reconstruction:</strong> Decoder outputs relative depth map</li>
+        <li><strong>Safety Zones:</strong> Converts depth to near/medium/far classifications</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- System Integration Pattern -->
+  <div class="callout mt-3">
+    <h4 style="margin-top: 0;">Practical System Architecture</h4>
+    <p>Production systems typically combine: <strong>YOLO for detection</strong> + <strong>semantic segmentation for alignment</strong> + <strong>depth estimation for safety</strong>. Each runs on different threads with priority scheduling: safety checks (30 FPS) > alignment (15 FPS) > scene understanding (5 FPS).</p>
+
+    <pre class="code-block" style="font-size: 0.85rem; margin-top: 1rem;"><code>class NavigationPipeline:
+    def __init__(self):
+        self.yolo = YOLODetector()      # 30 FPS - high priority
+        self.segment = Segmenter()       # 15 FPS - medium priority
+        self.depth = DepthEstimator()    # 5 FPS - low priority
+
+    def process_frame(self, frame):
+        # Parallel processing with priority queue
+        detections = self.yolo.detect(frame)       # Vehicles, signals
+        alignment = self.segment.align(frame)       # Crosswalk boundary
+        safety = self.depth.assess(frame, detections)  # Distance check
+
+        return self.fuse_outputs(detections, alignment, safety)</code></pre>
+  </div>
+
+  <!-- Performance Comparison Table -->
+  <h2 class="mt-4">Algorithm Performance Comparison</h2>
+  <div class="table-container mt-2">
+    <table>
+      <thead>
+        <tr>
+          <th>Algorithm</th>
+          <th>Accuracy</th>
+          <th>Speed (FPS)</th>
+          <th>Power</th>
+          <th>Best Use Case</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Canny + Hough (Legacy)</strong></td>
+          <td>85-92%</td>
+          <td>25-30</td>
+          <td>Low</td>
+          <td>Clear conditions, resource-constrained</td>
+        </tr>
+        <tr>
+          <td><strong>YOLO (YOLOv5s)</strong></td>
+          <td>94-97%</td>
+          <td>15-20</td>
+          <td>Medium</td>
+          <td>Multi-object real-time detection</td>
+        </tr>
+        <tr>
+          <td><strong>Semantic Segmentation</strong></td>
+          <td>96-98%</td>
+          <td>5-10</td>
+          <td>High</td>
+          <td>Precise boundary detection</td>
+        </tr>
+        <tr>
+          <td><strong>Depth Estimation (MiDaS)</strong></td>
+          <td>90-94%</td>
+          <td>10-15</td>
+          <td>Medium-High</td>
+          <td>Distance assessment, safety validation</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small" style="margin-top: 0.5rem; text-align: center;">*Results for varied weather conditions on modern smartphone hardware (2023+)</p>
+
+  <!-- Knowledge Check Quiz -->
+  <h2 class="mt-4">Knowledge Check</h2>
+  <div class="quiz-container" data-quiz="modern-algorithms">
+    <div class="quiz-question">Why has YOLO become the preferred method for real-time crosswalk navigation over classical CV approaches like Hough Transform?</div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-quiz-choice>It's faster - YOLO runs at 60 FPS vs Hough's 25 FPS</button>
+      <button class="quiz-option" data-quiz-choice data-correct="true">It handles varied conditions better - robust to lighting, weather, and different crosswalk types</button>
+      <button class="quiz-option" data-quiz-choice>It uses less power - YOLO is more energy efficient</button>
+    </div>
+    <p class="small" data-quiz-result style="margin-top: 1rem; display: none;"></p>
+  </div>
+
+  <!-- Call to Action: Next Steps -->
+  <div style="background: var(--bg-secondary); padding: 2.5rem; border-radius: var(--radius-xl); margin-top: 3rem; text-align: center; border: 1px solid var(--border);">
+    <h3 style="margin-top: 0;">Ready to Test Your Understanding?</h3>
+    <p style="max-width: 600px; margin: 0 auto 1.5rem auto;">Experience these algorithms through interactive demonstrations and apply your knowledge with hands-on activities.</p>
+    <a href="activities.html" style="background: var(--primary); color: white; padding: 1rem 2rem; border-radius: var(--radius-lg); text-decoration: none; font-weight: 600; display: inline-block; box-shadow: var(--shadow-md); transition: all 0.3s ease;">Continue to Interactive Activities →</a>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="wrap">
+    <p>© <span id="current-year">2024</span> Assistive Crosswalk Navigation Tutorial</p>
+  </div>
+</footer>
+
+<!-- Main JavaScript -->
+<script src="../js/main.js"></script>
+</body>
+</html>
