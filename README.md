@@ -8,7 +8,7 @@ This educational tutorial provides a 20-minute deep dive into the technical foun
 
 ## Features
 
-- **Interactive Learning**: Hands-on alignment simulator game, drag-and-drop sensor matching, and crosswalk identification challenges
+- **Interactive Learning**: Hands-on interactive alignment simulator game, drag-and-drop sensor matching, and crosswalk identification challenges
 - **Multimedia Content**: Video demonstrations, audio narrations, before/after visual comparisons, and annotated examples
 - **Comprehensive Coverage**: Sensors, core tasks, classical vs. deep learning algorithms, and real-world challenges
 - **Academic Foundation**: Annotated bibliography with 14+ peer-reviewed sources and reliability assessments
